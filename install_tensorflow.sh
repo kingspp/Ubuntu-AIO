@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing tensorflow"
-sudo apt-get install -y python-pip python-dev
+sudo apt-get install -y python-pip python-dev libpng-dev libfreetype6-dev
 sudo pip install matplotlib
 sudo pip install jupyter
 sudo pip install flask --upgrade
