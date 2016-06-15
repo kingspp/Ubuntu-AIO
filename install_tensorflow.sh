@@ -11,3 +11,6 @@ sudo $pip install scipy
 sudo $pip install flask flask-httpauth --upgrade
 sudo $pip install simplejson jsonpickle
 #sudo $pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
+
+#Fixes:
+echo -e "export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8" >> ~/.bashrc && source ~/.bashrc
