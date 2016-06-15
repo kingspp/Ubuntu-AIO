@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$pip=pip
+pip=pip
 
 echo "Installing tensorflow"
 sudo apt-get install -y python-pip python-dev 
