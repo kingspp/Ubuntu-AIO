@@ -6,6 +6,9 @@
 # Install Nvidia Driver
 command -v nvidia-smi >/dev/null 2>&1 || { echo "Installing Nvidia Library" >&2; sudo apt-get install nvidia-352-updates;} 
 
+# Install python3 dependencies
+sudo apt-get update && sudo apt-get install python3-numpy swig python3-dev python3-wheel python3-pip
+
 # Download cuda_tookit and cudann files
 # Use SCP
 
