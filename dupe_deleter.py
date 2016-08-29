@@ -1,4 +1,6 @@
 """
+# This simple program deletes all the duplicate whatsapp media on phone
+
 # Install QPython3 for android
 # https://github.com/qpython-android/qpython3/releases
 
