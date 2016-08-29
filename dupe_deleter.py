@@ -10,24 +10,31 @@
 import os, hashlib
 from operator import itemgetter
 from itertools import groupby
-image_list = []
-folder_list = [r'/storage/emulated/0/whatsapp/media/whatsapp images/',
-               r'/storage/emulated/0/whatsapp/media/whatsapp images/Sent']
-for folder in folder_list:
-    file_list = os.listdir(folder)
-    for img_file in file_list:
-        file_path = os.path.join(folder, img_file)
-        if os.path.isfile(file_path):
+
+file_list = []
+rootdir = r'/storage/emulated/0/whatsapp/media/whatsapp images/'
+del_file_count, del_size, total_file_count = 0, 0, 0
+for subdir, dirs, files in os.walk(rootdir):
+    for file in files:
+        total_file_count += 1
+        file = os.path.join(subdir, file)
+        if os.path.isfile(file):
             try:
-                image_list.append([file_path, hashlib.sha1(open(file_path, 'rb').read()).hexdigest()])
+                file_list.append([file, hashlib.sha1(open(file, 'rb').read()).hexdigest()])
             except IOError:
                 raise Exception('Error reading the file')
-image_list.sort(key=itemgetter(1))
-groups = groupby(image_list, itemgetter(1))
+
+file_list.sort(key=itemgetter(1))
+groups = groupby(file_list, itemgetter(1))
 for (img_hash, img_list_same_hash) in groups:
     z = [img for img in img_list_same_hash]
     i = 1
     while i < len(z):
-        os.remove(z[i][0])
-        print('Deleted ' + z[i][0])
+        del_size += os.path.getsize(r'' + z[i][0])
+        os.remove(r'' + z[i][0])
+        print('Deleted ' + r'' + z[i][0])
         i += 1
+        del_file_count += 1
+
+print(del_file_count / total_file_count * 100, '% duplicate files found ( ', del_file_count, '/', total_file_count, ')')
+print('Saved: ', del_size / (1024 ** 3), 'GB')
