@@ -1,6 +1,8 @@
 #!/bin/bash
 # @Author: Prathyush SP
 # @Author-Progress Bar : Teddy Skarin
+# Requirements:
+# sudo apt-get install imagemagick
 
 #!/bin/sh
 echo 	"#########################################"
