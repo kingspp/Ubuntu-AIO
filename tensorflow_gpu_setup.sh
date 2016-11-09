@@ -11,11 +11,21 @@ sudo apt-get update && sudo apt-get install python3-numpy swig python3-dev pytho
 
 # Download cuda_tookit and cudann files
 # Use SCP
+sudo dpkg -i cuda-repo-ubuntu1404*amd64.deb
+sudo apt-get update
+sudo apt-get install cuda
+
+# Environmental variables for cuda toolkit
+echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
 
 # Copy CudaNN
-sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
-sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+tar xvf cudnn*.tgz
+cd cuda
+sudo cp */*.h /usr/local/cuda/include/
+sudo cp */libcudnn* /usr/local/cuda/lib64/
+sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
 
 # Check Cuda Version:
 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
